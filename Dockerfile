@@ -6,8 +6,8 @@ COPY ./newrelic/newrelic.jar ./newrelic.jar
 
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./newrelic.jar
-RUN	ls
 
 USER ${SERVICE_USER}
 
 ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+
