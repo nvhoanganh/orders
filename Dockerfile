@@ -2,12 +2,11 @@ FROM weaveworksdemos/msd-java:jre-latest
 
 WORKDIR /usr/src/app
 COPY target/*.jar ./app.jar
-
-RUN mkdir -p /usr/local/tomcat/newrelic
-ADD ./newrelic/newrelic.jar /usr/local/tomcat/newrelic/newrelic.jar
-ENV JAVA_OPTS="$JAVA_OPTS -javaagent:/usr/local/tomcat/newrelic/newrelic.jar"
+COPY ./newrelic/newrelic.jar ./newrelic.jar
 
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./newrelic.jar
+RUN	ls
 
 USER ${SERVICE_USER}
 
